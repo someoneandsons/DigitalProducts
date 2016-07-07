@@ -233,7 +233,7 @@ class DigitalProducts_LicenseElementType extends BaseElementType
 
             'status' => [
                 AttributeType::String,
-                'default' => DigitalProducts_ProductModel::LIVE
+                'default' => BaseElementModel::ENABLED
             ],
 
             'order' => [AttributeType::String, 'default' => 'dateCreated desc'],
@@ -318,7 +318,7 @@ class DigitalProducts_LicenseElementType extends BaseElementType
         }
 
         if ($criteria->productId) {
-            if (!$criteria->productId == ':all:')
+            if ($criteria->productId != ':all:')
             {
                 $query->andWhere(DbHelper::parseParam('products.id', $criteria->productId, $query->params));
             }
